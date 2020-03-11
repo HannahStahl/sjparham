@@ -1,9 +1,10 @@
 import React from 'react';
+import content from '../content.json';
 
 const About = () => (
-  <div>
-    <h1>About Page</h1>
-    <p>Insert About content here.</p>
+  <div className="about">
+    <img src="/about.jpg" alt="Steve Parham" />
+    {content.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
   </div>
 );
 

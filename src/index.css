@@ -16,7 +16,7 @@ code {
 }
 
 .page-content {
-  padding: 5%;
+  padding: 3% 12% 8% 12%;
 }
 
 .btn {
@@ -33,12 +33,18 @@ code {
   background-color: var(--cream);
 }
 
+p {
+  font-size: 18px;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+}
+
 
 /*************** NAV BAR **************/
 
 .navbar-light .navbar-nav .nav-link {
   color: var(--cream);
-  font-size: 22px;
+  font-size: 20px;
   width: 170px;
   height: 140px;
   border-bottom: solid 1px transparent;
@@ -69,10 +75,12 @@ code {
 .navbar-light .navbar-nav .nav-link.logo .line-1 {
   font-size: 40px;
   margin-bottom: 0px;
+  line-height: 1.5;
 }
 
 .navbar-light .navbar-nav .nav-link.logo .line-2 {
   font-size: 22px;
+  line-height: 1.5;
 }
 
 
@@ -99,4 +107,25 @@ code {
 .home h2 {
   font-size: 40px;
   margin-bottom: 45px;
+}
+
+
+/*************** ABOUT PAGE **************/
+
+.about {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about p {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.about img {
+  width: 400px;
+  float: left;
+  margin-right: 50px;
+  margin-bottom: 50px;
 }
