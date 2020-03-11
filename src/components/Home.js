@@ -2,10 +2,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 const Home = () => (
-  <div>
-    <h1>Awesome Website Title</h1>
-    <p>Time to create an awesome website.</p>
-    <Button>{'Let\'s go'}</Button>
+  <div className="home">
+    <h1>S J PARHAM</h1>
+    <h2>PHOTOGRAPHY</h2>
+    <Button variant="outline-light">View Galleries</Button>
   </div>
 );
 

@@ -1,11 +1,13 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Lora', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  --dark-gray: #202020;
+  --cream: #e0dcc3;
+  background-color: var(--dark-gray);
+  color: var(--cream);
 }
 
 code {
@@ -15,5 +17,86 @@ code {
 
 .page-content {
   padding: 5%;
-  padding-top: 7%;
+}
+
+.btn {
+  font-size: 24px;
+  padding: 15px 20px 15px 20px;
+  color: var(--cream);
+  border-color: var(--cream);
+  border-radius: 0px;
+}
+
+.btn:hover {
+  color: var(--dark-gray);
+  border-color: var(--dark-gray);
+  background-color: var(--cream);
+}
+
+
+/*************** NAV BAR **************/
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--cream);
+  font-size: 22px;
+  width: 170px;
+  height: 140px;
+  border-bottom: solid 1px transparent;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.navbar-light .navbar-nav .nav-link.logo {
+  width: 300px;
+}
+
+.navbar-light .navbar-nav .nav-link.link-to-page:hover, .navbar-light .navbar-nav .nav-link.link-to-page.active {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar-light .navbar-nav .nav-link:hover p, .navbar-light .navbar-nav .nav-link.active p {
+  color: var(--cream);
+  border-bottom: solid 1px var(--cream);
+}
+
+.navbar-light .navbar-nav .nav-link.logo:hover p, .navbar-light .navbar-nav .nav-link.logo.active p {
+  border-bottom: none;
+}
+
+.navbar-light .navbar-nav .nav-link.logo .line-1 {
+  font-size: 40px;
+  margin-bottom: 0px;
+}
+
+.navbar-light .navbar-nav .nav-link.logo .line-2 {
+  font-size: 22px;
+}
+
+
+/*************** HOME PAGE **************/
+
+.home {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: -1;
+}
+
+.home h1 {
+  font-size: 72px;
+  margin-bottom: 12px;
+}
+
+.home h2 {
+  font-size: 40px;
+  margin-bottom: 45px;
 }

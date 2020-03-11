@@ -4,21 +4,32 @@ import Nav from 'react-bootstrap/Nav';
 
 const NavBar = () => (
   <Navbar collapseOnSelect expand="lg">
-    <Navbar.Brand href="/">
-      <img
-        alt="Home"
-        src="favicon.ico"
-        width="30"
-        height="30"
-        className="d-inline-block align-top"
-      />
-    </Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
-      <Nav className="ml-auto" activeKey={window.location.pathname}>
-        <Nav.Link href="/about">About</Nav.Link>
-        <Nav.Link href="/portfolio">Portfolio</Nav.Link>
-        <Nav.Link href="/contact">Contact</Nav.Link>
+      <Nav className="ml-auto mr-auto" activeKey={window.location.pathname}>
+        <Nav.Link href="/about" className="link-to-page">
+          <p>About</p>
+        </Nav.Link>
+        <Nav.Link href="/galleries" className="link-to-page">
+          <p>Galleries</p>
+        </Nav.Link>
+        {window.location.pathname !== '/' && (
+          <Nav.Link href="/" className="logo">
+            <p className="line-1">S J PARHAM</p>
+            <p className="line-2">PHOTOGRAPHY</p>
+          </Nav.Link>
+        )}
+        <Nav.Link href="/contact" className="link-to-page">
+          <p>Contact</p>
+        </Nav.Link>
+        <Nav.Link
+          href="https://www.instagram.com/steve.parham.photography/"
+          className="link-to-page"
+          target="_blank"
+          rel="noopener nereferrer"
+        >
+          <p>Instagram</p>
+        </Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
