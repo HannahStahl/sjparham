@@ -6,7 +6,9 @@ const Home = () => (
     <img src="home.jpg" alt="Home" />
     <h1>S J PARHAM</h1>
     <h2>PHOTOGRAPHY</h2>
-    <Button variant="outline-light">View Galleries</Button>
+    <Button variant="outline-light" onClick={() => { window.location.pathname = '/galleries'; }}>
+      View Galleries
+    </Button>
   </div>
 );
 
