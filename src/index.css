@@ -171,9 +171,14 @@ p {
   margin: 0 auto;
 }
 
+.galleries .grid div {
+  width: 300px;
+  margin: 20px;
+  border: solid 1px var(--cream);
+}
+
 .galleries img {
-  width: 350px;
-  padding: 20px;
+  width: 100%;
 }
 
 
