@@ -160,6 +160,20 @@ p {
 }
 
 
+
+/*************** GALLERIES PAGE **************/
+
+.galleries .grid {
+  margin: 0 auto;
+}
+
+.galleries img {
+  width: 350px;
+  padding: 20px;
+}
+
+
+
 /*************** CONTACT PAGE **************/
 
 .contact {
