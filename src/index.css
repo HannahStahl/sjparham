@@ -6,6 +6,7 @@ body {
   text-align: center;
   --dark-gray: #202020;
   --cream: #e0dcc3;
+  --light-cream: #f5f2e1;
   background-color: var(--dark-gray);
   color: var(--cream);
 }
@@ -61,6 +62,10 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.navbar-light .navbar-nav .nav-link.link-to-page p, .navbar-light .navbar-nav .nav-link.link-to-page p {
+  border-bottom: solid 1px transparent;
 }
 
 .navbar-light .navbar-nav .nav-link:hover p, .navbar-light .navbar-nav .nav-link.active p {
@@ -128,4 +133,22 @@ p {
   float: left;
   margin-right: 50px;
   margin-bottom: 50px;
+}
+
+
+/*************** CONTACT PAGE **************/
+
+.contact {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact input, .contact textarea {
+  background-color: var(--cream);
+}
+
+.contact .form-control:focus {
+  background-color: var(--light-cream);
+  border: none;
 }
