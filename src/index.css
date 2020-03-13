@@ -171,13 +171,69 @@ p {
   margin: 0 auto;
 }
 
-.galleries .grid div {
+.galleries .grid a {
   width: 300px;
   margin: 20px;
   border: solid 1px var(--cream);
 }
 
 .galleries img {
+  width: 100%;
+}
+
+
+
+/*************** GALLERY PAGE **************/
+
+.gallery .main-photo-container {
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gallery .main-photo {
+  margin-right: 20px;
+  height: 400px;
+  width: 400px;
+  margin-bottom: 30px;
+}
+
+.gallery .main-photo img {
+  outline: solid 1px var(--cream);
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.gallery .main-photo-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  text-align: left;
+  width: 350px;
+}
+
+.gallery .main-photo-details h2 {
+  margin-bottom: 15px;
+}
+
+.gallery .grid {
+  margin: 0 auto;
+}
+
+.gallery .grid div {
+  width: 200px;
+  margin: 15px;
+  border: solid 1px var(--cream);
+}
+
+.gallery .grid div:hover {
+  cursor: pointer;
+}
+
+.gallery img {
   width: 100%;
 }
 

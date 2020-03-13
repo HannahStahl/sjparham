@@ -6,7 +6,7 @@ const NavBar = () => (
   <Navbar collapseOnSelect expand="lg">
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
-      <Nav className="ml-auto mr-auto" activeKey={window.location.pathname}>
+      <Nav className="ml-auto mr-auto" activeKey={`/${window.location.pathname.split('/')[1]}`}>
         <Nav.Link href="/about" className="link-to-page">
           <p>About</p>
         </Nav.Link>
