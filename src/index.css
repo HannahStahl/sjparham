@@ -369,10 +369,11 @@ p {
   margin-top: 0px;
   text-align: left;
   width: 325px;
+  height: 425px;
 }
 
 .gallery .photo-description {
-  height: 305px;
+  height: calc(100% - 40px);
   overflow-y: scroll;
 }
 
@@ -417,17 +418,24 @@ p {
   }
 }
 
+@media all and (max-width: 1184px) {
+  .gallery .main-photo-container {
+    padding-bottom: 10px;
+  }
+
+  .gallery .main-photo {
+    height: auto;
+    margin-bottom: 35px;
+  }
+}
+
 @media all and (max-width: 991px) {
   .gallery h1 {
     margin-bottom: 40px;
   }
-}
 
-@media all and (max-width: 1144px) {
   .gallery .main-photo {
     width: 375px;
-    height: auto;
-    margin-bottom: 35px;
   }
 
   .gallery .main-photo-details {
