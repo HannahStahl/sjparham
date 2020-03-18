@@ -6,7 +6,7 @@ const Gallery = (props) => {
   const { match } = props;
   const galleryId = match.params.id;
   const [photos, setPhotos] = useState([]);
-  const [photo, setPhoto] = useState(undefined);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const promises = [
@@ -20,38 +20,46 @@ const Gallery = (props) => {
         const photoIds = photoMapping
           .filter((row) => row.itemId === photoInGallery.itemId)
           .map((row) => row.photoId);
-        const itemPhoto = allPhotos.find((photoInList) => photoInList.photoId === photoIds[0]);
+        const itemPhoto = allPhotos.find(
+          (photoInList) => photoInList.photoId === photoIds[currentIndex],
+        );
         photosInGallery[index].itemPhoto = itemPhoto.photoName;
       });
       setPhotos(photosInGallery);
-      setPhoto(photosInGallery[0]);
     });
   }, [galleryId]);
 
-  const updateMainPhoto = () => {
-    console.log('here');
+  const renderMainPhoto = () => {
+    const mainPhoto = photos[currentIndex];
+    return (
+      <div className="main-photo-container">
+        <div className="main-photo">
+          <img src={`${config.cloudfrontURL}/${mainPhoto.itemPhoto}`} alt={mainPhoto.itemName} />
+        </div>
+        <div className="main-photo-details">
+          <h2>{mainPhoto.itemName}</h2>
+          <p>{mainPhoto.itemDescription}</p>
+        </div>
+      </div>
+    );
   };
+
+  const renderPhotoThumbnails = () => (
+    <Masonry className="grid" options={{ isFitWidth: true }}>
+      {photos.map((photoInList, index) => (
+        <div key={photoInList.itemId} onClick={() => setCurrentIndex(index)}>
+          <img src={`${config.cloudfrontURL}/${photoInList.itemPhoto}`} alt={photoInList.itemName} />
+        </div>
+      ))}
+    </Masonry>
+  );
 
   return (
     <div className="gallery">
-      {photo && (
+      {photos.length > 0 && (
         <>
-          <div className="main-photo-container">
-            <div className="main-photo">
-              <img src={`${config.cloudfrontURL}/${photo.itemPhoto}`} alt={photo.itemName} />
-            </div>
-            <div className="main-photo-details">
-              <h2>{photo.itemName}</h2>
-              <p>{photo.itemDescription}</p>
-            </div>
-          </div>
-          <Masonry className="grid" options={{ isFitWidth: true }}>
-            {photos.map((photoInList) => (
-              <div key={photoInList.itemId} onClick={updateMainPhoto}>
-                <img src={`${config.cloudfrontURL}/${photoInList.itemPhoto}`} alt={photoInList.itemName} />
-              </div>
-            ))}
-          </Masonry>
+          {renderMainPhoto()}
+          {renderPhotoThumbnails()}
         </>
       )}
     </div>
