@@ -337,10 +337,14 @@ p {
 }
 
 .gallery .main-photo-container {
-  padding-bottom: 50px;
+  padding-bottom: 20px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.gallery .photo-index-container {
+  padding-bottom: 30px;
 }
 
 .gallery .main-photo {

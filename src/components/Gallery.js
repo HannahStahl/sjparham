@@ -48,25 +48,28 @@ const Gallery = (props) => {
         <div className="main-photo-details">
           <h2>{mainPhoto.itemName}</h2>
           <p className="photo-description">{mainPhoto.itemDescription}</p>
-          <p>
-            <span
-              className={`photo-arrow${currentIndex === 0 ? ' disabled' : ''}`}
-              onClick={() => incrementIndex(-1)}
-            >
-              {'<'}
-            </span>
-            <span className="photo-index">{`${currentIndex + 1}/${photos.length}`}</span>
-            <span
-              className={`photo-arrow${currentIndex === photos.length - 1 ? ' disabled' : ''}`}
-              onClick={() => incrementIndex(1)}
-            >
-              {'>'}
-            </span>
-          </p>
         </div>
       </div>
     );
   };
+
+  const renderIndices = () => (
+    <p className="photo-index-container">
+      <span
+        className={`photo-arrow${currentIndex === 0 ? ' disabled' : ''}`}
+        onClick={() => incrementIndex(-1)}
+      >
+        {'<'}
+      </span>
+      <span className="photo-index">{`${currentIndex + 1}/${photos.length}`}</span>
+      <span
+        className={`photo-arrow${currentIndex === photos.length - 1 ? ' disabled' : ''}`}
+        onClick={() => incrementIndex(1)}
+      >
+        {'>'}
+      </span>
+    </p>
+  );
 
   const renderPhotoThumbnails = () => (
     <Masonry className="grid" options={{ isFitWidth: true }}>
@@ -84,6 +87,7 @@ const Gallery = (props) => {
       {photos.length > 0 && (
         <>
           {renderMainPhoto()}
+          {renderIndices()}
           {renderPhotoThumbnails()}
         </>
       )}
