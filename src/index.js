@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter, withRouter, Route, Switch,
@@ -25,15 +25,30 @@ const Routes = () => (
     <Route component={NotFound} />
   </Switch>
 );
-const App = withRouter(() => (
-  <>
-    <NavBar />
-    <div className="page-content">
-      <Routes />
-    </div>
-    {window.location.pathname !== '/' && <Footer />}
-  </>
-));
+
+const App = withRouter(() => {
+  const [showFooter, setShowFooter] = useState(false);
+
+  useEffect(() => {
+    setShowFooter(false);
+    if (window.location.pathname.includes('galleries')) {
+      setTimeout(() => setShowFooter(true), 1000);
+    } else {
+      setShowFooter(true);
+    }
+  }, [window.location.pathname]);
+
+  return (
+    <>
+      <NavBar />
+      <div className="page-content">
+        <Routes />
+      </div>
+      {window.location.pathname !== '/' && showFooter && <Footer />}
+    </>
+  );
+});
+
 ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
