@@ -246,9 +246,16 @@ p {
 
 .about img {
   width: 400px;
+  max-width: 100%;
   float: left;
   margin-right: 50px;
   margin-bottom: 40px;
+}
+
+@media all and (max-width: 991px) {
+  .about img {
+    width: 300px;
+  }
 }
 
 
