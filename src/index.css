@@ -128,6 +128,22 @@ p {
   }
 }
 
+@media all and (max-width: 991px) {
+  .navbar-nav {
+    margin-top: 12px;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    width: 100px;
+    height: 40px;
+    justify-content: flex-start;
+  }
+
+  .navbar-light .navbar-nav .nav-link p {
+    margin-bottom: 0px;
+  }
+}
+
 
 /*************** HOME PAGE **************/
 
@@ -163,6 +179,16 @@ p {
 .home h2 {
   font-size: 40px;
   margin-bottom: 45px;
+}
+
+@media all and (max-width: 991px) {
+  .home h1 {
+    font-size: 64px;
+  }
+  
+  .home h2 {
+    font-size: 35px;
+  }
 }
 
 
