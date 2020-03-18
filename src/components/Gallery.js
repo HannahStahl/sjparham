@@ -4,18 +4,20 @@ import config from '../config';
 
 const Gallery = (props) => {
   const { match } = props;
-  const galleryId = match.params.id;
+  const [gallery, setGallery] = useState({ categoryId: match.params.id });
   const [photos, setPhotos] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const promises = [
-      fetch(`${config.apiURL}/publishedItems/${config.userID}/${galleryId}`).then((res) => res.json()),
+      fetch(`${config.apiURL}/category/${config.userID}/${gallery.categoryId}`).then((res) => res.json()),
+      fetch(`${config.apiURL}/publishedItems/${config.userID}/${gallery.categoryId}`).then((res) => res.json()),
       fetch(`${config.apiURL}/itemsToPhotos/${config.userID}`).then((res) => res.json()),
       fetch(`${config.apiURL}/photos/${config.userID}`).then((res) => res.json()),
     ];
     Promise.all(promises).then((results) => {
-      const [photosInGallery, photoMapping, allPhotos] = results;
+      const [galleryDetails, photosInGallery, photoMapping, allPhotos] = results;
+      setGallery(galleryDetails);
       photosInGallery.forEach((photoInGallery, index) => {
         const photoIds = photoMapping
           .filter((row) => row.itemId === photoInGallery.itemId)
@@ -27,7 +29,7 @@ const Gallery = (props) => {
       });
       setPhotos(photosInGallery);
     });
-  }, [galleryId]);
+  }, [match.params.id]);
 
   const renderMainPhoto = () => {
     const mainPhoto = photos[currentIndex];
@@ -56,6 +58,7 @@ const Gallery = (props) => {
 
   return (
     <div className="gallery">
+      {gallery.categoryName && <h1>{gallery.categoryName}</h1>}
       {photos.length > 0 && (
         <>
           {renderMainPhoto()}
