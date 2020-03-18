@@ -50,6 +50,11 @@ p {
   .page-content {
     padding-top: 15%;
   }
+
+  .btn {
+    font-size: 20px;
+    padding: 10px 15px 10px 15px;
+  }
 }
 
 

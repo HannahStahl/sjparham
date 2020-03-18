@@ -4,12 +4,14 @@ import Nav from 'react-bootstrap/Nav';
 
 const NavBar = () => (
   <>
-    <div className="header-logo-container">
-      <div className="header-logo" onClick={() => { window.location.pathname = '/'; }}>
-        <p className="line-1">S J PARHAM</p>
-        <p className="line-2">PHOTOGRAPHY</p>
+    {window.location.pathname !== '/' && (
+      <div className="header-logo-container">
+        <div className="header-logo" onClick={() => { window.location.pathname = '/'; }}>
+          <p className="line-1">S J PARHAM</p>
+          <p className="line-2">PHOTOGRAPHY</p>
+        </div>
       </div>
-    </div>
+    )}
     <Navbar collapseOnSelect expand="lg">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
