@@ -257,10 +257,10 @@ p {
 }
 
 .gallery .main-photo {
-  margin-right: 20px;
+  margin-right: 25px;
   height: 400px;
-  width: 400px;
-  margin-bottom: 30px;
+  width: 450px;
+  margin-bottom: 25px;
 }
 
 .gallery .main-photo img {
@@ -277,6 +277,11 @@ p {
   margin-left: 20px;
   text-align: left;
   width: 350px;
+}
+
+.gallery .photo-description {
+  height: 305px;
+  overflow: scroll;
 }
 
 .gallery .main-photo-details h2 {

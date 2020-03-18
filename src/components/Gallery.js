@@ -40,7 +40,8 @@ const Gallery = (props) => {
         </div>
         <div className="main-photo-details">
           <h2>{mainPhoto.itemName}</h2>
-          <p>{mainPhoto.itemDescription}</p>
+          <p className="photo-description">{mainPhoto.itemDescription}</p>
+          <p>{`${currentIndex + 1} / ${photos.length}`}</p>
         </div>
       </div>
     );
