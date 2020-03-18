@@ -7,13 +7,18 @@ const NavBar = () => (
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="ml-auto mr-auto" activeKey={`/${window.location.pathname.split('/')[1]}`}>
+        {window.innerWidth <= 991 && (
+          <Nav.Link href="/" className="link-to-page">
+            <p>Home</p>
+          </Nav.Link>
+        )}
         <Nav.Link href="/about" className="link-to-page">
           <p>About</p>
         </Nav.Link>
         <Nav.Link href="/galleries" className="link-to-page">
           <p>Galleries</p>
         </Nav.Link>
-        {window.location.pathname !== '/' && (
+        {window.location.pathname !== '/' && window.innerWidth > 991 && (
           <Nav.Link href="/" className="logo">
             <p className="line-1">S J PARHAM</p>
             <p className="line-2">PHOTOGRAPHY</p>
