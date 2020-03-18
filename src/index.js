@@ -13,6 +13,7 @@ import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import NotFound from './components/NotFound';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 const Routes = () => (
   <Switch>
@@ -30,6 +31,7 @@ const App = withRouter(() => (
     <div className="page-content">
       <Routes />
     </div>
+    {window.location.pathname !== '/' && <Footer />}
   </>
 ));
 ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
