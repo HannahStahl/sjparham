@@ -60,6 +60,10 @@ p {
   flex-direction: column;
 }
 
+.navbar-light .navbar-nav .nav-link p {
+  transition: .2s;
+}
+
 .navbar-light .navbar-nav .nav-link.logo {
   width: 300px;
 }
@@ -111,13 +115,13 @@ p {
   outline: none;
 }
 
-@media (hover: hover) {
-  .navbar-light .navbar-nav .nav-link.link-to-page:hover {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+.navbar-light .navbar-nav .nav-link.link-to-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+@media (hover: hover) {
   .navbar-light .navbar-nav .nav-link:hover p {
     color: var(--cream);
     border-bottom: solid 1px var(--cream);
