@@ -31,6 +31,13 @@ const Gallery = (props) => {
     });
   }, [match.params.id]);
 
+  const incrementIndex = (amount) => {
+    const newIndex = currentIndex + amount;
+    if (newIndex >= 0 && newIndex < photos.length) {
+      setCurrentIndex(newIndex);
+    }
+  };
+
   const renderMainPhoto = () => {
     const mainPhoto = photos[currentIndex];
     return (
@@ -41,7 +48,21 @@ const Gallery = (props) => {
         <div className="main-photo-details">
           <h2>{mainPhoto.itemName}</h2>
           <p className="photo-description">{mainPhoto.itemDescription}</p>
-          <p>{`${currentIndex + 1} / ${photos.length}`}</p>
+          <p>
+            <span
+              className={`photo-arrow${currentIndex === 0 ? ' disabled' : ''}`}
+              onClick={() => incrementIndex(-1)}
+            >
+              {'<'}
+            </span>
+            <span className="photo-index">{`${currentIndex + 1}/${photos.length}`}</span>
+            <span
+              className={`photo-arrow${currentIndex === photos.length - 1 ? ' disabled' : ''}`}
+              onClick={() => incrementIndex(1)}
+            >
+              {'>'}
+            </span>
+          </p>
         </div>
       </div>
     );

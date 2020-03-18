@@ -281,7 +281,11 @@ p {
 
 .gallery .photo-description {
   height: 305px;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+.gallery .photo-arrow.disabled {
+  opacity: 0.4;
 }
 
 .gallery .main-photo-details h2 {
@@ -290,6 +294,11 @@ p {
 
 .gallery .grid {
   margin: 0 auto;
+}
+
+.gallery .photo-index {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .gallery .grid div {
@@ -303,6 +312,14 @@ p {
 }
 
 @media (hover: hover) {
+  .gallery .photo-arrow:hover {
+    cursor: pointer;
+  }
+
+  .gallery .photo-arrow.disabled:hover {
+    cursor: default;
+  }
+
   .gallery .grid div:hover {
     cursor: pointer;
   }
