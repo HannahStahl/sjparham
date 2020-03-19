@@ -16,7 +16,11 @@ const Galleries = () => {
       <Masonry className="grid" options={{ isFitWidth: true }}>
         {galleries.map((gallery) => (
           <a key={gallery.categoryId} href={`/galleries/${gallery.categoryId}`}>
-            <img className="category-photo" src={`${config.cloudfrontURL}/${gallery.categoryPhoto}`} alt={gallery.categoryName} />
+            <img
+              className="category-photo"
+              src={`${config.cloudfrontURL}/${gallery.categoryPhoto}`}
+              alt={`S J Parham Photography - ${gallery.categoryName}`}
+            />
             <div className="category-name"><h2>{gallery.categoryName}</h2></div>
           </a>
         ))}

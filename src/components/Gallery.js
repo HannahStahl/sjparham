@@ -43,7 +43,10 @@ const Gallery = (props) => {
     return (
       <div className="main-photo-container">
         <div className="main-photo">
-          <img src={`${config.cloudfrontURL}/${mainPhoto.itemPhoto}`} alt={mainPhoto.itemName} />
+          <img
+            src={`${config.cloudfrontURL}/${mainPhoto.itemPhoto}`}
+            alt={`S J Parham Photography - ${mainPhoto.itemName}`}
+          />
         </div>
         <div className="main-photo-details">
           <h2>{mainPhoto.itemName}</h2>
@@ -75,7 +78,10 @@ const Gallery = (props) => {
     <Masonry className="grid" options={{ isFitWidth: true }}>
       {photos.map((photoInList, index) => (
         <div key={photoInList.itemId} onClick={() => setCurrentIndex(index)}>
-          <img src={`${config.cloudfrontURL}/${photoInList.itemPhoto}`} alt={photoInList.itemName} />
+          <img
+            src={`${config.cloudfrontURL}/${photoInList.itemPhoto}`}
+            alt={`S J Parham Photography - ${photoInList.itemName}`}
+          />
         </div>
       ))}
     </Masonry>
