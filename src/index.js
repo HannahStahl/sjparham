@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import {
   BrowserRouter, withRouter, Route, Switch,
 } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Home from './components/Home';
@@ -16,14 +18,35 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import config from './config';
 
+const routes = [
+  { path: '/', Component: Home },
+  { path: '/about', Component: About },
+  { path: '/galleries', Component: Galleries },
+  { path: '/galleries/:name', Component: Gallery },
+  { path: '/contact', Component: Contact },
+  // { path: undefined, Component: NotFound },
+];
+
 const Routes = ({ galleries }) => (
   <Switch>
-    <Route path="/" exact component={Home} />
-    <Route path="/about" exact component={About} />
-    <Route path="/galleries" exact render={(props) => <Galleries {...props} galleries={galleries} />} />
-    <Route path="/galleries/:name" exact render={(props) => <Gallery {...props} galleries={galleries} />} />
-    <Route path="/contact" exact component={Contact} />
-    <Route component={NotFound} />
+    <Container className="container">
+      {routes.map(({ path, Component }) => (
+        <Route key={path} exact path={path}>
+          {({ match }) => (
+            <CSSTransition
+              in={match !== null}
+              timeout={300}
+              classNames="page"
+              unmountOnExit
+            >
+              <div className="page">
+                <Component galleries={galleries} />
+              </div>
+            </CSSTransition>
+          )}
+        </Route>
+      ))}
+    </Container>
   </Switch>
 );
 
