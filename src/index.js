@@ -14,13 +14,14 @@ import Contact from './components/Contact';
 import NotFound from './components/NotFound';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import config from './config';
 
-const Routes = () => (
+const Routes = ({ galleries }) => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/about" exact component={About} />
-    <Route path="/galleries" exact component={Galleries} />
-    <Route path="/galleries/:id" exact component={Gallery} />
+    <Route path="/galleries" exact render={(props) => <Galleries {...props} galleries={galleries} />} />
+    <Route path="/galleries/:name" exact render={(props) => <Gallery {...props} galleries={galleries} />} />
     <Route path="/contact" exact component={Contact} />
     <Route component={NotFound} />
   </Switch>
@@ -28,6 +29,7 @@ const Routes = () => (
 
 const App = withRouter(() => {
   const [showFooter, setShowFooter] = useState(false);
+  const [galleries, setGalleries] = useState([]);
 
   useEffect(() => {
     setShowFooter(false);
@@ -36,13 +38,16 @@ const App = withRouter(() => {
     } else {
       setShowFooter(true);
     }
+    fetch(`${config.apiURL}/publishedCategories/${config.userID}`).then((res) => res.json()).then((categories) => {
+      setGalleries(categories);
+    });
   }, [window.location.pathname]);
 
   return (
     <>
       <NavBar />
       <div className="page-content">
-        <Routes />
+        <Routes galleries={galleries} />
       </div>
       {window.location.pathname !== '/' && showFooter && <Footer />}
     </>

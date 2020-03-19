@@ -3,33 +3,37 @@ import Masonry from 'react-masonry-component';
 import config from '../config';
 
 const Gallery = (props) => {
-  const { match } = props;
-  const [gallery, setGallery] = useState({ categoryId: match.params.id });
+  const { match, galleries } = props;
+  const [gallery, setGallery] = useState({});
   const [photos, setPhotos] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const promises = [
-      fetch(`${config.apiURL}/category/${config.userID}/${gallery.categoryId}`).then((res) => res.json()),
-      fetch(`${config.apiURL}/publishedItems/${config.userID}/${gallery.categoryId}`).then((res) => res.json()),
-      fetch(`${config.apiURL}/itemsToPhotos/${config.userID}`).then((res) => res.json()),
-      fetch(`${config.apiURL}/photos/${config.userID}`).then((res) => res.json()),
-    ];
-    Promise.all(promises).then((results) => {
-      const [galleryDetails, photosInGallery, photoMapping, allPhotos] = results;
-      setGallery(galleryDetails);
-      photosInGallery.forEach((photoInGallery, index) => {
-        const photoIds = photoMapping
-          .filter((row) => row.itemId === photoInGallery.itemId)
-          .map((row) => row.photoId);
-        const itemPhoto = allPhotos.find(
-          (photoInList) => photoInList.photoId === photoIds[currentIndex],
-        );
-        photosInGallery[index].itemPhoto = itemPhoto.photoName;
+    if (galleries.length > 0) {
+      const category = galleries.find((categoryInList) => (
+        categoryInList.categoryName.toLowerCase() === match.params.name.replace(/_/g, ' ').toLowerCase()
+      ));
+      setGallery(category);
+      const promises = [
+        fetch(`${config.apiURL}/publishedItems/${config.userID}/${category.categoryId}`).then((res) => res.json()),
+        fetch(`${config.apiURL}/itemsToPhotos/${config.userID}`).then((res) => res.json()),
+        fetch(`${config.apiURL}/photos/${config.userID}`).then((res) => res.json()),
+      ];
+      Promise.all(promises).then((results) => {
+        const [photosInGallery, photoMapping, allPhotos] = results;
+        photosInGallery.forEach((photoInGallery, index) => {
+          const photoIds = photoMapping
+            .filter((row) => row.itemId === photoInGallery.itemId)
+            .map((row) => row.photoId);
+          const itemPhoto = allPhotos.find(
+            (photoInList) => photoInList.photoId === photoIds[currentIndex],
+          );
+          photosInGallery[index].itemPhoto = itemPhoto.photoName;
+        });
+        setPhotos(photosInGallery);
       });
-      setPhotos(photosInGallery);
-    });
-  }, [match.params.id]);
+    }
+  }, [match.params.name, galleries]);
 
   const incrementIndex = (amount) => {
     const newIndex = currentIndex + amount;
