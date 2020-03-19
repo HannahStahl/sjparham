@@ -68,6 +68,44 @@ p {
   transition: opacity 300ms;
 }
 
+.page-enter.home-page > .page-content .home .logo-overlay {
+  top: 23px;
+  margin-top: 0px;
+}
+
+.page-enter.home-page > .navbar-light .navbar-collapse .navbar-nav .nav-link.logo {
+  display: block;
+}
+
+.page-enter.home-page > .page-content .home .logo-overlay .line-1 {
+  font-size: 40px;
+}
+
+.page-enter.home-page > .page-content .home .logo-overlay .line-2 {
+  font-size: 22px;
+}
+
+.page-enter-active.home-page > .page-content .home .logo-overlay {
+  top: 50%;
+  margin-top: -150px;
+  transition: top 300ms, margin-top 300ms;
+}
+
+.page-enter-active.home-page > .navbar-light .navbar-collapse .navbar-nav .nav-link.logo {
+  display: none;
+  transition: display 300ms;
+}
+
+.page-enter-active.home-page > .page-content .home .logo-overlay .line-1 {
+  font-size: 72px;
+  transition: font-size 300ms;
+}
+
+.page-enter-active.home-page > .page-content .home .logo-overlay .line-2 {
+  font-size: 40px;
+  transition: font-size 300ms;
+}
+
 @media (hover: hover) {
   .btn:hover {
     color: var(--dark-gray);
@@ -94,7 +132,7 @@ p {
 .navbar-light .navbar-nav .nav-link {
   color: var(--cream);
   font-size: 20px;
-  width: 170px;
+  width: 140px;
   height: 140px;
   border-bottom: solid 1px transparent;
   display: flex;
@@ -269,14 +307,30 @@ p {
   object-position: 100% 50%;
 }
 
-.home h1 {
-  font-size: 72px;
-  margin-bottom: 12px;
+.home .view-galleries-btn {
+  margin-top: 150px;
 }
 
-.home h2 {
+.home .logo-overlay {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  margin-top: -150px;
+}
+
+.home .logo-overlay .line-1 {
+  font-size: 72px;
+  margin-bottom: 0px;
+  line-height: 1.5;
+}
+
+.home .logo-overlay .line-2 {
   font-size: 40px;
-  margin-bottom: 45px;
+  line-height: 1.5;
+}
+
+.home-page .nav-link.logo {
+  display: none;
 }
 
 @media all and (max-width: 991px) {

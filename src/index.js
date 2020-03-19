@@ -16,7 +16,7 @@ import routes from './routes';
 const Routes = ({ galleries, showFooter }) => (
   <Switch>
     <Container className="container">
-      {routes.map(({ path, Component }) => (
+      {routes.map(({ path, name, Component }) => (
         <Route key={path} exact path={path}>
           {(props) => (
             <CSSTransition
@@ -25,8 +25,11 @@ const Routes = ({ galleries, showFooter }) => (
               classNames="page"
               unmountOnExit
             >
-              <div className="page">
-                <Component {...props} galleries={galleries} />
+              <div className={`page${name === 'Home' ? ' home-page' : ' not-home-page'}`}>
+                <NavBar />
+                <div className="page-content">
+                  <Component {...props} galleries={galleries} />
+                </div>
                 {window.location.pathname !== '/' && showFooter && <Footer />}
               </div>
             </CSSTransition>
@@ -55,8 +58,7 @@ const App = withRouter(() => {
 
   return (
     <>
-      <NavBar />
-      <div className="page-content">
+      <div>
         <Routes galleries={galleries} showFooter={showFooter} />
       </div>
     </>

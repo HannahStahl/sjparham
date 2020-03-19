@@ -23,7 +23,7 @@ const NavBar = () => (
           <Nav.Link to="/galleries" as={NavLink} className="link-to-page">
             <p>Galleries</p>
           </Nav.Link>
-          {window.location.pathname !== '/' && window.innerWidth > 991 && (
+          {window.innerWidth > 991 && (
             <Nav.Link to="/" as={NavLink} className="logo">
               <p className="line-1">S J PARHAM</p>
               <p className="line-2">PHOTOGRAPHY</p>
