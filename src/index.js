@@ -51,7 +51,7 @@ const App = withRouter(() => {
     fetch(`${config.apiURL}/publishedCategories/${config.userID}`).then((res) => res.json()).then((categories) => {
       setGalleries(categories);
     });
-  }, [window.location.pathname]);
+  }, []);
 
   return (
     <>
