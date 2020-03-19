@@ -8,39 +8,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Home from './components/Home';
-import About from './components/About';
-import Galleries from './components/Galleries';
-import Gallery from './components/Gallery';
-import Contact from './components/Contact';
-import NotFound from './components/NotFound';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import config from './config';
+import routes from './routes';
 
-const routes = [
-  { path: '/', Component: Home },
-  { path: '/about', Component: About },
-  { path: '/galleries', Component: Galleries },
-  { path: '/galleries/:name', Component: Gallery },
-  { path: '/contact', Component: Contact },
-  // { path: undefined, Component: NotFound },
-];
-
-const Routes = ({ galleries }) => (
+const Routes = ({ galleries, showFooter }) => (
   <Switch>
     <Container className="container">
       {routes.map(({ path, Component }) => (
         <Route key={path} exact path={path}>
-          {({ match }) => (
+          {(props) => (
             <CSSTransition
-              in={match !== null}
+              in={props.match !== null}
               timeout={300}
               classNames="page"
               unmountOnExit
             >
               <div className="page">
-                <Component galleries={galleries} />
+                <Component {...props} galleries={galleries} />
+                {window.location.pathname !== '/' && showFooter && <Footer />}
               </div>
             </CSSTransition>
           )}
@@ -70,9 +57,8 @@ const App = withRouter(() => {
     <>
       <NavBar />
       <div className="page-content">
-        <Routes galleries={galleries} />
+        <Routes galleries={galleries} showFooter={showFooter} />
       </div>
-      {window.location.pathname !== '/' && showFooter && <Footer />}
     </>
   );
 });

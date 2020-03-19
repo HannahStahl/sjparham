@@ -9,7 +9,7 @@ const Gallery = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (galleries.length > 0) {
+    if (match && galleries.length > 0) {
       const category = galleries.find((categoryInList) => (
         categoryInList.categoryName.toLowerCase() === match.params.name.replace(/_/g, ' ').toLowerCase()
       ));
@@ -33,7 +33,7 @@ const Gallery = (props) => {
         setPhotos(photosInGallery);
       });
     }
-  }, [match.params.name, galleries]);
+  }, [match, galleries]);
 
   const incrementIndex = (amount) => {
     const newIndex = currentIndex + amount;

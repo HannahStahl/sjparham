@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
 import Masonry from 'react-masonry-component';
 import config from '../config';
 
@@ -15,14 +17,18 @@ const Galleries = () => {
     <div className="galleries">
       <Masonry className="grid" options={{ isFitWidth: true }}>
         {galleries.map((gallery) => (
-          <a key={gallery.categoryId} href={`/galleries/${gallery.categoryName.replace(/ /g, '_').toLowerCase()}`}>
+          <Nav.Link
+            key={gallery.categoryId}
+            to={`/galleries/${gallery.categoryName.replace(/ /g, '_').toLowerCase()}`}
+            as={NavLink}
+          >
             <img
               className="category-photo"
               src={`${config.cloudfrontURL}/${gallery.categoryPhoto}`}
               alt={`S J Parham Photography - ${gallery.categoryName}`}
             />
             <div className="category-name"><h2>{gallery.categoryName}</h2></div>
-          </a>
+          </Nav.Link>
         ))}
       </Masonry>
     </div>
