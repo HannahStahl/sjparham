@@ -212,6 +212,44 @@ p {
     font-size: 20px;
     padding: 10px 15px 10px 15px;
   }
+  
+  .home-page.page-enter > .page-content .home .logo-overlay .line-1 {
+    font-size: 30px;
+  }
+  
+  .home-page.page-enter > .page-content .home .logo-overlay .line-2 {
+    font-size: 16px;
+  }
+  
+  .home-page.page-enter-active > .page-content .home .logo-overlay .line-1 {
+    font-size: 64px;
+  }
+  
+  .home-page.page-enter-active > .page-content .home .logo-overlay .line-2 {
+    font-size: 35px;
+  }
+  
+  .home-page.page-exit > .page-content .home .logo-overlay .line-1 {
+    font-size: 64px;
+  }
+  
+  .home-page.page-exit > .page-content .home .logo-overlay .line-2 {
+    font-size: 35px;
+  }
+  
+  .home-page.page-exit-active > .page-content .home .logo-overlay {
+    top: 10px;
+  }
+  
+  .home-page.page-exit-active > .page-content .home .logo-overlay .line-1 {
+    font-size: 30px;
+    transition: font-size 1s;
+  }
+  
+  .home-page.page-exit-active > .page-content .home .logo-overlay .line-2 {
+    font-size: 16px;
+    transition: font-size 1s;
+  }
 }
 
 
@@ -433,12 +471,16 @@ p {
 }
 
 @media all and (max-width: 991px) {
-  .home h1 {
+  .home .logo-overlay .line-1 {
     font-size: 64px;
   }
   
-  .home h2 {
+  .home .logo-overlay .line-2 {
     font-size: 35px;
+  }
+
+  .home .view-galleries-link {
+    margin-top: 100px;
   }
 }
 
