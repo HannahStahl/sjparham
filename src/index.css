@@ -9,6 +9,7 @@ body {
   --light-cream: #f5f2e1;
   background-color: var(--dark-gray);
   color: var(--cream);
+  transition-timing-function: cubic-bezier(.42, 0, .58, 1);
 }
 
 code {
@@ -38,9 +39,10 @@ p {
   letter-spacing: 0.5px;
 }
 
-.container {
+.page-container {
   position: relative;
   height: 100%;
+  width: 100%;
 }
 
 .page {
@@ -307,7 +309,7 @@ p {
   object-position: 100% 50%;
 }
 
-.home .view-galleries-btn {
+.home .view-galleries-link {
   margin-top: 150px;
 }
 

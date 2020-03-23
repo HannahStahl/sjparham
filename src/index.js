@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import NavBar from './components/NavBar';
@@ -15,7 +14,7 @@ import routes from './routes';
 
 const Routes = ({ galleries, showFooter }) => (
   <Switch>
-    <Container className="container">
+    <div className="page-container">
       {routes.map(({ path, name, Component }) => (
         <Route key={path} exact path={path}>
           {(props) => (
@@ -36,7 +35,7 @@ const Routes = ({ galleries, showFooter }) => (
           )}
         </Route>
       ))}
-    </Container>
+    </div>
   </Switch>
 );
 

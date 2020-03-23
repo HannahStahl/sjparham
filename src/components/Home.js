@@ -10,7 +10,7 @@ const Home = () => (
       <p className="line-1">S J PARHAM</p>
       <p className="line-2">PHOTOGRAPHY</p>
     </div>
-    <Nav.Link to="/galleries" as={NavLink}>
+    <Nav.Link to="/galleries" as={NavLink} className="view-galleries-link">
       <Button variant="outline-light" className="view-galleries-btn">
         View Galleries
       </Button>
