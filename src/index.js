@@ -20,7 +20,7 @@ const Routes = ({ galleries, showFooter }) => (
           {(props) => (
             <CSSTransition
               in={props.match !== null}
-              timeout={300}
+              timeout={2000}
               classNames="page"
               unmountOnExit
             >

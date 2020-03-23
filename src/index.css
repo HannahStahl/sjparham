@@ -61,6 +61,65 @@ p {
   transition: opacity 300ms;
 }
 
+.home-page.page-enter > .page-content .home .view-galleries-link {
+  opacity: 0;
+}
+
+.home-page.page-enter-active > .page-content .home .view-galleries-link {
+  opacity: 1;
+  transition: opacity 1s;
+  transition-delay: 1s;
+}
+
+.home-page.page-enter > .page-content .home .logo-overlay {
+  top: 23px;
+  margin-top: 0px;
+}
+
+.home-page.page-enter > .page-content .home .logo-overlay .line-1 {
+  font-size: 40px;
+}
+
+.home-page.page-enter > .page-content .home .logo-overlay .line-2 {
+  font-size: 22px;
+}
+
+.home-page.page-enter-active > .page-content .home .logo-overlay {
+  top: 50%;
+  margin-top: -150px;
+  transition: top 1s, margin-top 1s;
+}
+
+.home-page.page-enter-active > .page-content .home .logo-overlay .line-1 {
+  font-size: 72px;
+  transition: font-size 1s;
+}
+
+.home-page.page-enter-active > .page-content .home .logo-overlay .line-2 {
+  font-size: 40px;
+  transition: font-size 1s;
+}
+
+.home-page.page-enter > .navbar-light .navbar-nav .nav-link.logo {
+  width: 300px;
+  padding: auto;
+}
+
+.home-page.page-enter-active > .navbar-light .navbar-nav .nav-link.logo {
+  width: 0px;
+  padding: 0px;
+  transition: width 1s, padding 1s;
+}
+
+.home-page.page-enter > .navbar-light .navbar-nav .nav-link.link-to-page {
+  width: 140px;
+}
+
+.home-page.page-enter-active > .navbar-light .navbar-nav .nav-link.link-to-page {
+  width: 240px;
+  transition: width 1s;
+}
+
 .page-exit {
   opacity: 1;
 }
@@ -114,12 +173,8 @@ p {
 
 .home-page .navbar-light .navbar-nav .nav-link.logo {
   visibility: hidden;
-}
-
-.home-page .navbar-light .navbar-nav .nav-link.logo.shrunk {
   width: 0px;
   padding: 0px;
-  transition: width 1s, padding 1s;
 }
 
 .navbar-light .navbar-nav .nav-link.link-to-page.active {
@@ -176,9 +231,8 @@ p {
   align-items: center;
 }
 
-.navbar-light .navbar-nav .nav-link.link-to-page.wide {
+.home-page .navbar-light .navbar-nav .nav-link.link-to-page {
   width: 240px;
-  transition: width 1s;
 }
 
 .header-logo-container {
@@ -291,48 +345,25 @@ p {
 }
 
 .home .view-galleries-link {
-  opacity: 0;
   margin-top: 150px;
-}
-
-.home .view-galleries-link.visible {
-  opacity: 1;
-  transition: opacity 1s;
-  transition-delay: 1s;
 }
 
 .home .logo-overlay {
   width: 100%;
   position: absolute;
-  top: 23px;
-  margin-top: 0px;
+  top: 50%;
+  margin-top: -150px;
 }
 
 .home .logo-overlay .line-1 {
-  font-size: 40px;
+  font-size: 72px;
   margin-bottom: 0px;
   line-height: 1.5;
 }
 
 .home .logo-overlay .line-2 {
-  font-size: 22px;
-  line-height: 1.5;
-}
-
-.home .logo-overlay.enlarged {
-  top: 50%;
-  margin-top: -150px;
-  transition: top 1s, margin-top 1s;
-}
-
-.home .logo-overlay.enlarged .line-1 {
-  font-size: 72px;
-  transition: font-size 1s;
-}
-
-.home .logo-overlay.enlarged .line-2 {
   font-size: 40px;
-  transition: font-size 1s;
+  line-height: 1.5;
 }
 
 @media all and (max-width: 991px) {
