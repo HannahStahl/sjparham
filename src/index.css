@@ -236,6 +236,10 @@ p {
   .header-logo-container {
     display: flex;
   }
+
+  .navbar-light .navbar-nav .nav-link.logo {
+    display: none;
+  }
 }
 
 

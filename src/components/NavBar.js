@@ -23,12 +23,10 @@ const NavBar = () => (
           <Nav.Link to="/galleries" as={NavLink} className="link-to-page">
             <p>Galleries</p>
           </Nav.Link>
-          {window.innerWidth > 991 && (
-            <Nav.Link to="/" as={NavLink} className="logo">
-              <p className="line-1">S J PARHAM</p>
-              <p className="line-2">PHOTOGRAPHY</p>
-            </Nav.Link>
-          )}
+          <Nav.Link to="/" as={NavLink} className="logo">
+            <p className="line-1">S J PARHAM</p>
+            <p className="line-2">PHOTOGRAPHY</p>
+          </Nav.Link>
           <Nav.Link to="/contact" as={NavLink} className="link-to-page">
             <p>Contact</p>
           </Nav.Link>
