@@ -142,6 +142,10 @@ p {
   flex-direction: column;
 }
 
+.home-page .navbar-light .navbar-nav .nav-link {
+  width: 240px;
+}
+
 .navbar-light .navbar-nav .nav-link p {
   transition: .2s;
 }
