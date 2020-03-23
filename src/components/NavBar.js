@@ -17,17 +17,33 @@ const NavBar = () => (
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto mr-auto" activeKey={`/${window.location.pathname.split('/')[1]}`}>
-          <Nav.Link to="/about" as={NavLink} className="link-to-page">
+          <Nav.Link
+            to={{ pathname: '/about', state: { prevPathname: window.location.pathname } }}
+            as={NavLink}
+            className="link-to-page"
+          >
             <p>About</p>
           </Nav.Link>
-          <Nav.Link to="/galleries" as={NavLink} className="link-to-page">
+          <Nav.Link
+            to={{ pathname: '/galleries', state: { prevPathname: window.location.pathname } }}
+            as={NavLink}
+            className="link-to-page"
+          >
             <p>Galleries</p>
           </Nav.Link>
-          <Nav.Link to="/" as={NavLink} className="logo">
+          <Nav.Link
+            to={{ pathname: '/', state: { prevPathname: window.location.pathname } }}
+            as={NavLink}
+            className="logo"
+          >
             <p className="line-1">S J PARHAM</p>
             <p className="line-2">PHOTOGRAPHY</p>
           </Nav.Link>
-          <Nav.Link to="/contact" as={NavLink} className="link-to-page">
+          <Nav.Link
+            to={{ pathname: '/contact', state: { prevPathname: window.location.pathname } }}
+            as={NavLink}
+            className="link-to-page"
+          >
             <p>Contact</p>
           </Nav.Link>
           <Nav.Link

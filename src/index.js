@@ -17,22 +17,38 @@ const Routes = ({ galleries, showFooter }) => (
     <div className="page-container">
       {routes.map(({ path, name, Component }) => (
         <Route key={path} exact path={path}>
-          {(props) => (
-            <CSSTransition
-              in={props.match !== null}
-              timeout={2000}
-              classNames="page"
-              unmountOnExit
-            >
-              <div className={`page${name === 'Home' ? ' home-page' : ' not-home-page'}`}>
-                <NavBar />
-                <div className="page-content">
-                  <Component {...props} galleries={galleries} />
+          {(props) => {
+            let prevPathname;
+            const { location } = props;
+            if (location && location.state) {
+              ({ prevPathname } = location.state);
+            }
+            let className = 'page ';
+            if (name === 'Home') {
+              className += 'home-page';
+            } else {
+              className += 'not-home-page';
+              if (prevPathname === '/') {
+                className += ' from-home-page';
+              }
+            }
+            return (
+              <CSSTransition
+                in={props.match !== null}
+                timeout={2000}
+                classNames="page"
+                unmountOnExit
+              >
+                <div className={className}>
+                  <NavBar />
+                  <div className="page-content">
+                    <Component {...props} galleries={galleries} />
+                  </div>
+                  {window.location.pathname !== '/' && showFooter && <Footer />}
                 </div>
-                {window.location.pathname !== '/' && showFooter && <Footer />}
-              </div>
-            </CSSTransition>
-          )}
+              </CSSTransition>
+            );
+          }}
         </Route>
       ))}
     </div>
