@@ -43,6 +43,7 @@ const Routes = ({ galleries, showFooter }) => (
                   <NavBar />
                   <div className="page-content">
                     <Component {...props} galleries={galleries} />
+                    <div className="footer-push" />
                   </div>
                   {window.location.pathname !== '/' && showFooter && <Footer />}
                 </div>

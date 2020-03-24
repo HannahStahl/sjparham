@@ -19,6 +19,8 @@ code {
 
 .page-content {
   padding: 3% 12% 5% 12%;
+  min-height: calc(100vh - 140px);
+  margin-bottom: -100px;
 }
 
 .btn {
@@ -56,9 +58,19 @@ p {
   opacity: 0;
 }
 
+.page-enter > .footer {
+  opacity: 0;
+}
+
 .page-enter-active {
   opacity: 1;
   transition: opacity 300ms;
+}
+
+.page-enter-active > .footer {
+  opacity: 1;
+  transition: opacity 300ms;
+  transition-delay: 1.7s;
 }
 
 .from-home-page.page-enter-active {
@@ -67,6 +79,15 @@ p {
 
 .page-exit {
   opacity: 1;
+}
+
+.page-exit > .footer {
+  opacity: 1;
+}
+
+.page-exit-active > .footer {
+  opacity: 0;
+  transition: opacity 0s;
 }
 
 .page-exit-active {
@@ -206,6 +227,7 @@ p {
 @media all and (max-width: 991px) {
   .page-content {
     padding-top: 15%;
+    min-height: calc(100vh - 75px);
   }
 
   .btn {
@@ -265,6 +287,7 @@ p {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  z-index: 5;
 }
 
 .navbar-light .navbar-nav .nav-link p {
@@ -404,8 +427,12 @@ p {
 
 /*************** FOOTER **************/
 
+.footer-push {
+  height: 80px;
+}
+
 .footer {
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
 }
@@ -434,7 +461,6 @@ p {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: -1;
 }
 
 .home img {
