@@ -24,18 +24,21 @@ const Routes = ({ galleries, showFooter }) => (
               ({ prevPathname } = location.state);
             }
             let className = 'page ';
+            let timeout = 300;
             if (name === 'Home') {
               className += 'home-page';
+              timeout = 1300;
             } else {
               className += 'not-home-page';
               if (prevPathname === '/') {
                 className += ' from-home-page';
+                timeout = 1300;
               }
             }
             return (
               <CSSTransition
                 in={props.match !== null}
-                timeout={2000}
+                timeout={timeout}
                 classNames="page"
                 unmountOnExit
               >

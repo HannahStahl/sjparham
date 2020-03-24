@@ -69,7 +69,7 @@ p {
 .page-enter-active > .footer {
   opacity: 1;
   transition: opacity 300ms;
-  transition-delay: 1.7s;
+  transition-delay: 1s;
 }
 
 .from-home-page.page-enter-active {
@@ -101,7 +101,7 @@ p {
 .home-page.page-exit-active > .header-logo-container {
   opacity: 1;
   transition: opacity 300ms;
-  transition-delay: 1.7s;
+  transition-delay: 1s;
 }
 
 .home-page.page-exit-active {
