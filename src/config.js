@@ -10,8 +10,8 @@ const prod = {
   apiURL: 'https://lbe32id9hg.execute-api.us-east-1.amazonaws.com/prod',
   cloudfrontBaseURL: 'https://d1esxin5o90ebg.cloudfront.net',
   emailURL: 'https://aiikn63n03.execute-api.us-east-1.amazonaws.com/prod/email/send',
-  emailAddress: 'hannahstahl14@gmail.com', // TODO change to steveparham@gmail.com later
-  userID: 'us-east-1:e51b2b71-8b21-46c0-a302-6f3b84783041', // TODO change to Steve's later
+  emailAddress: 'steveparham@gmail.com',
+  userID: 'us-east-1:c48c660c-9634-4931-88df-9522a164db6f',
 };
 
 // Default to dev if not set
