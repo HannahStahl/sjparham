@@ -22,5 +22,6 @@ const config = process.env.REACT_APP_STAGE === 'prod'
 export default {
   // Add common config values here
   cloudfrontURL: `${config.cloudfrontBaseURL}/${config.userID}`,
+  publicCloudfrontURL: 'https://d2bcozk40tdrts.cloudfront.net',
   ...config,
 };

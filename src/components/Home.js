@@ -2,10 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
+import config from '../config';
 
 const Home = () => (
   <div className="home">
-    <img src="home.jpg" alt="S J Parham Photography" />
+    <img src={`${config.publicCloudfrontURL}/home.jpg`} alt="S J Parham Photography" />
     <div className="logo-overlay" id="logo-overlay">
       <p className="line-1">S J PARHAM</p>
       <p className="line-2">PHOTOGRAPHY</p>
