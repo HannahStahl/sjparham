@@ -738,6 +738,14 @@ p {
     height: auto;
     margin-bottom: 35px;
   }
+
+  .gallery .main-photo-details {
+    height: auto;
+  }
+
+  .gallery .photo-description {
+    height: auto;
+  }
 }
 
 @media all and (max-width: 991px) {
