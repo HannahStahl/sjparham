@@ -61,7 +61,17 @@ p {
   opacity: 0;
 }
 
-.page-enter-active {
+.home-page.page-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.from-home-page.page-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.not-home-page.page-enter-active > .page-content {
   opacity: 1;
   transition: opacity 300ms;
 }
@@ -89,7 +99,12 @@ p {
   transition: opacity 0s;
 }
 
-.page-exit-active {
+.home-page.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.not-home-page.page-exit-active > .page-content {
   opacity: 0;
   transition: opacity 300ms;
 }
