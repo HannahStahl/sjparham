@@ -772,6 +772,15 @@ p {
   margin-right: auto;
 }
 
+.contact h1 {
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+
+.contact-subheader {
+  margin-bottom: 30px;
+}
+
 .contact input, .contact textarea {
   background-color: var(--cream);
 }
@@ -779,4 +788,17 @@ p {
 .contact .form-control:focus {
   background-color: var(--light-cream);
   border: none;
+}
+
+.contact input {
+  border-radius: 0px;
+}
+
+.contact textarea {
+  border-radius: 0px;
+}
+
+.contact button {
+  font-size: 20px;
+  padding: 10px 15px 10px 15px;
 }

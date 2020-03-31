@@ -57,6 +57,8 @@ const Contact = () => {
 
   return (
     <div className="contact">
+      <h1>Contact Me</h1>
+      <p className="contact-subheader">For purchase requests or general inquiries, please send me a message below.</p>
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="name">
           <FormControl
