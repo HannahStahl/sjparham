@@ -26,7 +26,7 @@ const Gallery = (props) => {
             .filter((row) => row.itemId === photoInGallery.itemId)
             .map((row) => row.photoId);
           const itemPhoto = allPhotos.find(
-            (photoInList) => photoInList.photoId === photoIds[currentIndex],
+            (photoInList) => photoInList.photoId === photoIds[0],
           );
           photosInGallery[index].itemPhoto = itemPhoto.photoName;
         });
