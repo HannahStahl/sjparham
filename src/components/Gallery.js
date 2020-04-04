@@ -11,7 +11,7 @@ const Gallery = (props) => {
   useEffect(() => {
     if (match && galleries.length > 0) {
       const category = galleries.find((categoryInList) => (
-        categoryInList.categoryName.toLowerCase() === match.params.name.replace(/_/g, ' ').toLowerCase()
+        categoryInList.categoryName.toLowerCase() === unescape(match.params.name).replace(/_/g, ' ').toLowerCase()
       ));
       setGallery(category);
       const promises = [

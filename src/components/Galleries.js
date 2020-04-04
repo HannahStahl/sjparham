@@ -20,7 +20,7 @@ const Galleries = () => {
           <Nav.Link
             key={gallery.categoryId}
             to={{
-              pathname: `/galleries/${gallery.categoryName.replace(/ /g, '_').toLowerCase()}`,
+              pathname: escape(`/galleries/${gallery.categoryName.replace(/ /g, '_').toLowerCase()}`),
               state: { prevPathname: window.location.pathname },
             }}
             as={NavLink}
