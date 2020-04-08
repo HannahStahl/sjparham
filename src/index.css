@@ -18,7 +18,7 @@ code {
 
 .page-content {
   padding: 3% 12% 5% 12%;
-  min-height: calc(100vh - 140px);
+  min-height: calc(100vh - 160px);
   margin-bottom: -100px;
 }
 
