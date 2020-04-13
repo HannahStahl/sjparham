@@ -570,12 +570,6 @@ p {
   margin-bottom: 20px;
 }
 
-@media all and (max-width: 991px) {
-  .about img {
-    width: 300px;
-  }
-}
-
 @media all and (max-width: 600px) {
   .about img {
     margin-bottom: 40px;
