@@ -568,6 +568,7 @@ p {
   float: left;
   margin-right: 50px;
   margin-bottom: 20px;
+  border: solid 1px var(--cream);
 }
 
 @media all and (max-width: 600px) {
