@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Masonry from 'react-masonry-component';
+import { Controlled as Zoom } from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import config from '../config';
 
 const Gallery = (props) => {
@@ -7,6 +9,7 @@ const Gallery = (props) => {
   const [gallery, setGallery] = useState({});
   const [photos, setPhotos] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => {
     if (match && galleries.length > 0) {
@@ -42,15 +45,45 @@ const Gallery = (props) => {
     }
   };
 
+  const handleZoomChange = useCallback((shouldZoom) => {
+    const { body } = document;
+    if (shouldZoom) {
+      setIsZoomed(true);
+      body.style.height = '100vh';
+      body.style.overflow = 'hidden';
+    } else {
+      setIsZoomed(false);
+      body.style.height = 'auto';
+      body.style.overflow = 'auto';
+    }
+  }, []);
+
   const renderMainPhoto = () => {
     const mainPhoto = photos[currentIndex];
     return (
       <div className="main-photo-container">
         <div className="main-photo">
-          <img
-            src={`${config.cloudfrontURL}/${mainPhoto.itemPhoto}`}
-            alt={`S J Parham Photography - ${mainPhoto.itemName}`}
-          />
+          {window.innerWidth > 680 ? (
+            <Zoom
+              zoomMargin={50}
+              overlayBgColorStart="transparent"
+              overlayBgColorEnd="rgba(0, 0, 0, 0.7)"
+              isZoomed={isZoomed}
+              onZoomChange={handleZoomChange}
+            >
+              <img
+                className="gallery-main-photo-img"
+                src={`${config.cloudfrontURL}/${mainPhoto.itemPhoto}`}
+                alt={`S J Parham Photography - ${mainPhoto.itemName}`}
+              />
+            </Zoom>
+          ) : (
+            <img
+              className="gallery-main-photo-img"
+              src={`${config.cloudfrontURL}/${mainPhoto.itemPhoto}`}
+              alt={`S J Parham Photography - ${mainPhoto.itemName}`}
+            />
+          )}
         </div>
         <div className="main-photo-details">
           <h2>{mainPhoto.itemName}</h2>
