@@ -6,7 +6,7 @@ import config from '../config';
 
 const Home = () => (
   <div className="home">
-    <img src={`${config.publicCloudfrontURL}/home.jpg`} alt="S J Parham Photography" />
+    <img src={`${config.publicCloudfrontURL}/home2.jpg`} alt="S J Parham Photography" />
     <div className="logo-overlay" id="logo-overlay">
       <p className="line-1">S J PARHAM</p>
       <p className="line-2">PHOTOGRAPHY</p>
