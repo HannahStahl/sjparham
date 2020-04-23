@@ -8,6 +8,7 @@ const Gallery = (props) => {
   const { match, galleries } = props;
   const [gallery, setGallery] = useState({});
   const [photos, setPhotos] = useState([]);
+  const [showPhotos, setShowPhotos] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
 
@@ -112,7 +113,11 @@ const Gallery = (props) => {
   );
 
   const renderPhotoThumbnails = () => (
-    <Masonry className="grid" options={{ isFitWidth: true }}>
+    <Masonry
+      className="grid"
+      options={{ isFitWidth: true }}
+      onLayoutComplete={() => setShowPhotos(true)}
+    >
       {photos.map((photoInList, index) => (
         <div key={photoInList.itemId} onClick={() => setCurrentIndex(index)}>
           <img
@@ -126,6 +131,11 @@ const Gallery = (props) => {
 
   return (
     <div className="gallery">
+      <style>
+        {`.grid {
+          opacity: ${showPhotos ? '1' : '0'}
+        }`}
+      </style>
       {gallery.categoryName && <h1>{gallery.categoryName}</h1>}
       {photos.length > 0 && (
         <>
