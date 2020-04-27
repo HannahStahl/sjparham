@@ -17,25 +17,28 @@ const Gallery = (props) => {
       const category = galleries.find((categoryInList) => (
         categoryInList.categoryName.toLowerCase() === unescape(match.params.name).replace(/_/g, ' ').toLowerCase()
       ));
-      setGallery(category);
-      const promises = [
-        fetch(`${config.apiURL}/publishedItems/${config.userID}/${category.categoryId}`).then((res) => res.json()),
-        fetch(`${config.apiURL}/itemsToPhotos/${config.userID}`).then((res) => res.json()),
-        fetch(`${config.apiURL}/photos/${config.userID}`).then((res) => res.json()),
-      ];
-      Promise.all(promises).then((results) => {
-        const [photosInGallery, photoMapping, allPhotos] = results;
-        photosInGallery.forEach((photoInGallery, index) => {
-          const photoIds = photoMapping
-            .filter((row) => row.itemId === photoInGallery.itemId)
-            .map((row) => row.photoId);
-          const itemPhoto = allPhotos.find(
-            (photoInList) => photoInList.photoId === photoIds[0],
-          );
-          photosInGallery[index].itemPhoto = itemPhoto.photoName;
+      if (!category) window.location.pathname = '/galleries';
+      else {
+        setGallery(category);
+        const promises = [
+          fetch(`${config.apiURL}/publishedItems/${config.userID}/${category.categoryId}`).then((res) => res.json()),
+          fetch(`${config.apiURL}/itemsToPhotos/${config.userID}`).then((res) => res.json()),
+          fetch(`${config.apiURL}/photos/${config.userID}`).then((res) => res.json()),
+        ];
+        Promise.all(promises).then((results) => {
+          const [photosInGallery, photoMapping, allPhotos] = results;
+          photosInGallery.forEach((photoInGallery, index) => {
+            const photoIds = photoMapping
+              .filter((row) => row.itemId === photoInGallery.itemId)
+              .map((row) => row.photoId);
+            const itemPhoto = allPhotos.find(
+              (photoInList) => photoInList.photoId === photoIds[0],
+            );
+            photosInGallery[index].itemPhoto = itemPhoto.photoName;
+          });
+          setPhotos(photosInGallery);
         });
-        setPhotos(photosInGallery);
-      });
+      }
     }
   }, [match, galleries]);
 
