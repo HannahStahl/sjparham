@@ -40,7 +40,7 @@ const Contact = () => {
         email,
         message,
         sourceEmail: config.emailAddress,
-        siteDomain: window.location.origin,
+        siteDomain: window.location.host,
       }),
     }).then((response) => response.json()).then((json) => {
       if (json.MessageId) {
