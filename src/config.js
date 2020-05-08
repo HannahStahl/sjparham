@@ -10,7 +10,7 @@ const prod = {
   apiURL: 'https://lbe32id9hg.execute-api.us-east-1.amazonaws.com/prod',
   cloudfrontBaseURL: 'https://d1esxin5o90ebg.cloudfront.net',
   emailURL: 'https://aiikn63n03.execute-api.us-east-1.amazonaws.com/prod/email/send',
-  emailAddress: 'steveparham@gmail.com',
+  emailAddress: 'hannahstahl14@gmail.com',
   userID: 'us-east-1:c48c660c-9634-4931-88df-9522a164db6f',
 };
 
