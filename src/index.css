@@ -247,6 +247,21 @@ p {
   transition-timing-function: ease-in-out;
 }
 
+.grid.hidden {
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.grid.visible {
+  opacity: 1;
+  animation-name: fadeIn;
+  animation-duration: 300ms;
+}
+
 @media (hover: hover) {
   .btn:hover {
     color: var(--dark-gray);

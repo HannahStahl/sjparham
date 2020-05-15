@@ -6,7 +6,9 @@ import config from '../config';
 
 const Galleries = () => {
   const [galleries, setGalleries] = useState([]);
-  const [showPhotos, setShowPhotos] = useState(false);
+  const [layoutComplete, setLayoutComplete] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const showPhotos = layoutComplete && imagesLoaded;
 
   useEffect(() => {
     fetch(`${config.apiURL}/publishedCategories/${config.userID}`).then((res) => res.json()).then((categories) => {
@@ -16,15 +18,11 @@ const Galleries = () => {
 
   return (
     <div className="galleries">
-      <style>
-        {`.grid {
-          opacity: ${showPhotos ? '1' : '0'}
-        }`}
-      </style>
       <Masonry
-        className="grid"
+        className={`grid ${showPhotos ? 'visible' : 'hidden'}`}
         options={{ isFitWidth: true }}
-        onLayoutComplete={() => setShowPhotos(true)}
+        onLayoutComplete={(layout) => { if (layout.length > 0) setLayoutComplete(true); }}
+        onImagesLoaded={(images) => { if (images.images.length > 0) setImagesLoaded(true); }}
       >
         {galleries.map((gallery) => (
           <Nav.Link
