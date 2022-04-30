@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Masonry from 'react-masonry-component';
-import config from '../config';
 
 const Galleries = ({ galleries }) => {
   const [layoutComplete, setLayoutComplete] = useState(false);
@@ -19,19 +18,19 @@ const Galleries = ({ galleries }) => {
       >
         {galleries.map((gallery) => (
           <Nav.Link
-            key={gallery.categoryId}
+            key={gallery._id}
             to={{
-              pathname: escape(`/galleries/${gallery.categoryName.replace(/ /g, '_').toLowerCase()}`),
+              pathname: escape(`/galleries/${gallery.name.replace(/ /g, '_').toLowerCase()}`),
               state: { prevPathname: window.location.pathname },
             }}
             as={NavLink}
           >
             <img
               className="category-photo"
-              src={`${config.cloudfrontURL}/${gallery.categoryPhoto}`}
-              alt={`S J Parham Photography - ${gallery.categoryName}`}
+              src={gallery.previewPhoto.asset.url}
+              alt={`S J Parham Photography - ${gallery.name}`}
             />
-            <div className="category-name"><h2>{gallery.categoryName}</h2></div>
+            <div className="category-name"><h2>{gallery.name}</h2></div>
           </Nav.Link>
         ))}
       </Masonry>

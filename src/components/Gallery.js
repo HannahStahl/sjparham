@@ -2,11 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Masonry from 'react-masonry-component';
 import { Controlled as Zoom } from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-import config from '../config';
 
 const Gallery = ({ match, galleries }) => {
-  const [gallery, setGallery] = useState({});
-  const [photos, setPhotos] = useState([]);
+  const [gallery, setGallery] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [layoutComplete, setLayoutComplete] = useState(false);
@@ -15,37 +13,17 @@ const Gallery = ({ match, galleries }) => {
 
   useEffect(() => {
     if (match && galleries.length > 0) {
-      const category = galleries.find((categoryInList) => (
-        categoryInList.categoryName.toLowerCase() === unescape(match.params.name).replace(/_/g, ' ').toLowerCase()
+      const matchedGallery = galleries.find((galleryInList) => (
+        galleryInList.name.toLowerCase() === unescape(match.params.name).replace(/_/g, ' ').toLowerCase()
       ));
-      if (!category) window.location.pathname = '/galleries';
-      else {
-        setGallery(category);
-        const promises = [
-          fetch(`${config.apiURL}/publishedItems/${config.userID}/${category.categoryId}`).then((res) => res.json()),
-          fetch(`${config.apiURL}/itemsToPhotos/${config.userID}`).then((res) => res.json()),
-          fetch(`${config.apiURL}/photos/${config.userID}`).then((res) => res.json()),
-        ];
-        Promise.all(promises).then((results) => {
-          const [photosInGallery, photoMapping, allPhotos] = results;
-          photosInGallery.forEach((photoInGallery, index) => {
-            const photoIds = photoMapping
-              .filter((row) => row.itemId === photoInGallery.itemId)
-              .map((row) => row.photoId);
-            const itemPhoto = allPhotos.find(
-              (photoInList) => photoInList.photoId === photoIds[0],
-            );
-            photosInGallery[index].itemPhoto = itemPhoto.photoName;
-          });
-          setPhotos(photosInGallery);
-        });
-      }
+      if (!matchedGallery) window.location.pathname = '/galleries';
+      else setGallery(matchedGallery);
     }
   }, [match, galleries]);
 
   const incrementIndex = (amount) => {
     const newIndex = currentIndex + amount;
-    if (newIndex >= 0 && newIndex < photos.length) {
+    if (newIndex >= 0 && newIndex < gallery.photos.length) {
       setCurrentIndex(newIndex);
     }
   };
@@ -64,7 +42,7 @@ const Gallery = ({ match, galleries }) => {
   }, []);
 
   const renderMainPhoto = () => {
-    const mainPhoto = photos[currentIndex];
+    const mainPhoto = gallery.photos[currentIndex];
     return (
       <div className="main-photo-container">
         <div className="main-photo">
@@ -78,21 +56,21 @@ const Gallery = ({ match, galleries }) => {
             >
               <img
                 className="gallery-main-photo-img"
-                src={`${config.cloudfrontURL}/${mainPhoto.itemPhoto}`}
-                alt={`S J Parham Photography - ${mainPhoto.itemName}`}
+                src={mainPhoto.image.asset.url}
+                alt={`S J Parham Photography - ${mainPhoto.title}`}
               />
             </Zoom>
           ) : (
             <img
               className="gallery-main-photo-img"
-              src={`${config.cloudfrontURL}/${mainPhoto.itemPhoto}`}
-              alt={`S J Parham Photography - ${mainPhoto.itemName}`}
+              src={mainPhoto.image.asset.url}
+              alt={`S J Parham Photography - ${mainPhoto.title}`}
             />
           )}
         </div>
         <div className="main-photo-details">
-          <h2>{mainPhoto.itemName}</h2>
-          <p className="photo-description">{mainPhoto.itemDescription}</p>
+          <h2>{mainPhoto.title}</h2>
+          <p className="photo-description">{mainPhoto.description}</p>
         </div>
       </div>
     );
@@ -106,9 +84,9 @@ const Gallery = ({ match, galleries }) => {
       >
         {'<'}
       </span>
-      <span className="photo-index">{`${currentIndex + 1}/${photos.length}`}</span>
+      <span className="photo-index">{`${currentIndex + 1}/${gallery.photos.length}`}</span>
       <span
-        className={`photo-arrow${currentIndex === photos.length - 1 ? ' disabled' : ''}`}
+        className={`photo-arrow${currentIndex === gallery.photos.length - 1 ? ' disabled' : ''}`}
         onClick={() => incrementIndex(1)}
       >
         {'>'}
@@ -123,11 +101,11 @@ const Gallery = ({ match, galleries }) => {
       onLayoutComplete={(layout) => { if (layout.length > 0) setLayoutComplete(true); }}
       onImagesLoaded={(images) => { if (images.images.length > 0) setImagesLoaded(true); }}
     >
-      {photos.map((photoInList, index) => (
-        <div key={photoInList.itemId} onClick={() => setCurrentIndex(index)}>
+      {gallery.photos.map((photoInList, index) => (
+        <div key={photoInList.title} onClick={() => setCurrentIndex(index)}>
           <img
-            src={`${config.cloudfrontURL}/${photoInList.itemPhoto}`}
-            alt={`S J Parham Photography - ${photoInList.itemName}`}
+            src={photoInList.image.asset.url}
+            alt={`S J Parham Photography - ${photoInList.title}`}
           />
         </div>
       ))}
@@ -136,12 +114,16 @@ const Gallery = ({ match, galleries }) => {
 
   return (
     <div className="gallery">
-      {gallery.categoryName && <h1>{gallery.categoryName}</h1>}
-      {photos.length > 0 && (
+      {gallery && (
         <>
-          {renderMainPhoto()}
-          {renderIndices()}
-          {renderPhotoThumbnails()}
+          <h1>{gallery.name}</h1>
+          {gallery.photos.length > 0 && (
+            <>
+              {renderMainPhoto()}
+              {renderIndices()}
+              {renderPhotoThumbnails()}
+            </>
+          )}
         </>
       )}
     </div>

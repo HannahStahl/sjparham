@@ -70,9 +70,38 @@ const App = withRouter(() => {
     } else {
       setShowFooter(true);
     }
-    fetch(`${config.apiURL}/publishedCategories/${config.userID}`).then((res) => res.json()).then((categories) => {
-      setGalleries(categories);
-    });
+    fetch(config.sanityURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query {
+            allGallery(sort: { _updatedAt: DESC }) {
+              _id
+              name
+              previewPhoto {
+                asset {
+                  url
+                }
+              }
+              photos {
+                title
+                description
+                image {
+                  asset {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        `,
+      }),
+    })
+      .then((res) => res.json())
+      .then(({ data: { allGallery } }) => {
+        setGalleries(allGallery);
+      });
   }, []);
 
   return (
