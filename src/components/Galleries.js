@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Masonry from 'react-masonry-component';
 import config from '../config';
 
-const Galleries = () => {
-  const [galleries, setGalleries] = useState([]);
+const Galleries = ({ galleries }) => {
   const [layoutComplete, setLayoutComplete] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const showPhotos = layoutComplete && imagesLoaded;
-
-  useEffect(() => {
-    fetch(`${config.apiURL}/publishedCategories/${config.userID}`).then((res) => res.json()).then((categories) => {
-      setGalleries(categories);
-    });
-  }, []);
 
   return (
     <div className="galleries">

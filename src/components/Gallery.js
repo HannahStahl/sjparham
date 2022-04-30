@@ -4,8 +4,7 @@ import { Controlled as Zoom } from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import config from '../config';
 
-const Gallery = (props) => {
-  const { match, galleries } = props;
+const Gallery = ({ match, galleries }) => {
   const [gallery, setGallery] = useState({});
   const [photos, setPhotos] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
