@@ -5,6 +5,15 @@ import Nav from 'react-bootstrap/Nav';
 
 const NavBar = () => (
   <>
+    <div className="nav-link-container logo">
+      <Nav.Link
+        to={{ pathname: '/', state: { prevPathname: window.location.pathname } }}
+        as={NavLink}
+      >
+        <p className="line-1">S J PARHAM</p>
+        <p className="line-2">PHOTOGRAPHY</p>
+      </Nav.Link>
+    </div>
     {window.location.pathname !== '/' && (
       <div className="header-logo-container">
         <Nav.Link to="/" as={NavLink} className="header-logo">
@@ -16,7 +25,7 @@ const NavBar = () => (
     <Navbar collapseOnSelect expand="lg">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ml-auto mr-auto" activeKey={`/${window.location.pathname.split('/')[1]}`}>
+        <Nav activeKey={`/${window.location.pathname.split('/')[1]}`}>
           <div className="nav-link-container link-to-page">
             <Nav.Link
               to={{ pathname: '/about', state: { prevPathname: window.location.pathname } }}
@@ -33,30 +42,12 @@ const NavBar = () => (
               <p>Galleries</p>
             </Nav.Link>
           </div>
-          <div className="nav-link-container logo">
-            <Nav.Link
-              to={{ pathname: '/', state: { prevPathname: window.location.pathname } }}
-              as={NavLink}
-            >
-              <p className="line-1">S J PARHAM</p>
-              <p className="line-2">PHOTOGRAPHY</p>
-            </Nav.Link>
-          </div>
           <div className="nav-link-container link-to-page">
             <Nav.Link
               to={{ pathname: '/contact', state: { prevPathname: window.location.pathname } }}
               as={NavLink}
             >
               <p>Contact</p>
-            </Nav.Link>
-          </div>
-          <div className="nav-link-container link-to-page">
-            <Nav.Link
-              href="https://www.instagram.com/steve.parham.photography/"
-              target="_blank"
-              rel="noopener nereferrer"
-            >
-              <p>Instagram</p>
             </Nav.Link>
           </div>
         </Nav>
